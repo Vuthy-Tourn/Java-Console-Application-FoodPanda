@@ -1,11 +1,6 @@
 package view;
 
 import controller.UserController;
-import javazoom.jl.decoder.Bitstream;
-import javazoom.jl.player.Player;
-
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.Scanner;
 
 public class ConsoleView {
@@ -35,9 +30,9 @@ public class ConsoleView {
         String password = scanner.nextLine();
 
         if (UserController.login(username, password)) {
-            System.out.println(playSuccessSound()); // Alert sound
+            System.out.println(sound.SoundEffect.playSuccessSound()); // Alert sound
         } else {
-            System.out.println("Invalid Username or Password! Try again.");
+            System.out.println(sound.SoundEffect.playFailSound());
             login();
         }
     }
@@ -50,26 +45,5 @@ public class ConsoleView {
                 System.out.println("Invalid input! Please enter a number.");
             }
         }
-    }
-
-    // Method to play a success sound when login is successful
-    public static String playSuccessSound() {
-        try {
-            // Path to the MP3 file
-            File mp3File = new File("src/success-sound.mp3");
-            if (!mp3File.exists()) {
-                System.out.println("File not found.");
-            }
-
-            // Use JLayer's Bitstream class to play the MP3 file
-            Bitstream bitstream = new Bitstream(new FileInputStream(mp3File));
-            Player player = new Player(new FileInputStream(mp3File));
-
-            // Start playing the sound
-            player.play();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "\nLogin successfully!" ;
     }
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 public class UserController {
     private static Map<String, String> users = new HashMap<>();
     static {
-        users.put("admin", "123");
+        users.put("Vuthy", "168");
     }
 
     public static boolean login(String username, String password) {

@@ -1,14 +1,9 @@
 package model;
 
-import javazoom.jl.decoder.Bitstream;
-import javazoom.jl.player.Player;
 import lombok.Data;
 import org.nocrala.tools.texttablefmt.BorderStyle;
 import org.nocrala.tools.texttablefmt.CellStyle;
 import org.nocrala.tools.texttablefmt.Table;
-
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +34,7 @@ public class Cart {
         if (products.isEmpty()){
             System.out.println("Cart is Empty! Cannot place order.");
         }
-        System.out.println(playStartOrder()); // sound
+        System.out.println(sound.SoundEffect.playStartOrder()); // sound
         System.out.println(YELLOW+"==================== Place Order ===================="+RESET);
         Table table = getTable();
         System.out.println(table.render());
@@ -66,25 +61,6 @@ public class Cart {
 
         }
         return table;
-    }
-    public static String playStartOrder() {
-        try {
-            // Path to the MP3 file
-            File mp3File = new File("src/start-order.mp3");
-            if (!mp3File.exists()) {
-                System.out.println("File not found.");
-            }
-
-            // Use JLayer's Bitstream class to play the MP3 file
-            Bitstream bitstream = new Bitstream(new FileInputStream(mp3File));
-            Player player = new Player(new FileInputStream(mp3File));
-
-            // Start playing the sound
-            player.play();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
     }
     public boolean isEmpty() { return products.isEmpty(); }
     
